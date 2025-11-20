@@ -5,7 +5,7 @@ This project includes user authentication, course management, video lectures, da
 ## 🔗 GitHub Repository  
 This project contains both **frontend** and **backend** inside one repository.
 
-https://github.com/shrutisinha74168/Learningmanagementsystem
+https://github.com/iamshrutisinha16/Learningmanagementsystem
 
 ## 📌 Features  
 ### 👩‍🏫 Admin Features  
@@ -26,7 +26,6 @@ https://github.com/shrutisinha74168/Learningmanagementsystem
 ## 🛠 Tech Stack  
 ### Frontend  
 - React.js (Functional Components)  
-- Redux / Context API  
 - Axios  
 - React Router  
 - Tailwind / CSS  
@@ -35,8 +34,7 @@ https://github.com/shrutisinha74168/Learningmanagementsystem
 - Node.js  
 - Express.js  
 - MongoDB + Mongoose  
-- JWT Authentication  
-- Multer for upload  
+- JWT Authentication    
 - Bcrypt for password hashing  
 
 
