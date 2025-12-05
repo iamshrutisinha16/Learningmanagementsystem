@@ -12,40 +12,46 @@ import Contact from "./pages/Contact";
 import Quiz from "./pages/Quiz";
 import Payment from "./pages/Payment";
 import PrivateRoute from "./utils/PrivateRoute";
+
+// Context Providers
 import { AuthProvider } from "./context/AuthContext";
+import { CourseProvider } from "./context/CourseContext";
 
 function App() {
   const location = useLocation();
-  
+
   return (
     <AuthProvider>
-      <Navbar />
+      <CourseProvider>
+        <Navbar />
 
-      <Routes>
-        {/* Public Routes */}
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/courses" element={<CourseList />} />
-        <Route path="/courses/:id" element={<CourseDetail />} />
-        <Route path="/quiz/:id" element={<Quiz />} />
-        <Route path="/payment" element={<Payment />} />
-        <Route path="/contact" element={<Contact />} />
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/courses" element={<CourseList />} />
+          <Route path="/courses/:id" element={<CourseDetail />} />
+          <Route path="/quiz/:id" element={<Quiz />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/contact" element={<Contact />} />
 
-        {/* Protected Route */}
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
+          {/* Protected Route */}
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
 
-      <Footer />
+        <Footer />
+      </CourseProvider>
     </AuthProvider>
   );
 }
 
 export default App;
+
