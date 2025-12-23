@@ -1,24 +1,28 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/auth";
+// Base API URL from ENV
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
-// ✅ Automatically attach token to every request
+// Axios instance (token auto-attach)
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: API_BASE_URL,
 });
 
+//  Automatically attach token to every request
 axiosInstance.interceptors.request.use((config) => {
   const user = localStorage.getItem("user");
   if (user) {
     const token = JSON.parse(user).token;
-    if (token) config.headers.Authorization = `Bearer ${token}`;
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
   }
   return config;
 });
 
-// ✅ Register
+// Register
 export const registerUser = async (name, email, password) => {
-  const { data } = await axios.post(`${API_URL}/register`, {
+  const { data } = await axiosInstance.post("/auth/register", {
     name,
     email,
     password,
@@ -26,16 +30,16 @@ export const registerUser = async (name, email, password) => {
   return data;
 };
 
-// ✅ Login
+// Login
 export const loginUser = async (email, password) => {
-  const { data } = await axios.post(`${API_URL}/login`, {
+  const { data } = await axiosInstance.post("/auth/login", {
     email,
     password,
   });
   return data;
 };
 
-// ✅ Get courses (protected route example)
+// Get courses (protected route example)
 export const getCourses = async () => {
   const { data } = await axiosInstance.get("/courses");
   return data;
