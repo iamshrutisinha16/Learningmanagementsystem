@@ -5,7 +5,7 @@ import cors from "cors";
 
 import courseRoutes from "./routes/courseRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
-import adminRoutes from "./routes/adminRoutes.js"; // ✅ Admin routes import
+import adminRoutes from "./routes/adminRoutes.js";
 
 dotenv.config();
 
@@ -13,34 +13,46 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://learningmanagementsystem-red.vercel.app/", 
+    credentials: true,
+  })
+);
 app.use(express.json({ limit: "10mb" }));
 
 // MongoDB Connection
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI);
-    console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("✅ MongoDB Connected");
   } catch (error) {
-    console.error(`❌ MongoDB Connection Failed: ${error.message}`);
+    console.error("❌ MongoDB Connection Failed:", error.message);
     process.exit(1);
   }
 };
 
-connectDB();
-
 // Routes
 app.use("/api/courses", courseRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/api/admin", adminRoutes); // ✅ Admin routes added
+app.use("/api/admin", adminRoutes);
 
-// Default Route
+// Health / Default Route
 app.get("/", (req, res) => {
-  res.send("🎯 LMS Backend API is running...");
+  res.status(200).json({
+    success: true,
+    message: "🎯 LMS Backend API is running",
+  });
 });
 
-// Start Server
+// Start Server AFTER DB Connect
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+  });
 });
