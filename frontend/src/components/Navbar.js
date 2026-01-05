@@ -55,9 +55,10 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto align-items-lg-center">
             {[
+               { path: "/dashboard", label: "Dashboard" },
+                { path: "/aboutus", label: "About Us" },
               { path: "/courses", label: "Courses" },
-               { path: "/contact", label: "Contact" },
-              { path: "/dashboard", label: "Dashboard" },
+               { path: "/contact", label: "Contact Us" },
               { path: "/login", label: "Login" },
             ].map((item) => (
               <li key={item.path} className="nav-item mx-lg-2">
