@@ -5,7 +5,7 @@ import "animate.css";
 function Contact() {
   return (
     <div className="bg-light">
-      {/* 🏞️ Banner Section */}
+      {/*  Banner Section */}
       <section
         className="position-relative text-light text-center d-flex align-items-center justify-content-center"
         style={{

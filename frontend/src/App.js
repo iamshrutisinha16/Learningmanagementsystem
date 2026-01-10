@@ -9,6 +9,7 @@ import CourseList from "./pages/CourseList";
 import CourseDetail from "./pages/CourseDetail";
 import Dashboard from "./pages/Dashboard";
 import Contact from "./pages/Contact";
+import About from "./pages/About";
 import Quiz from "./pages/Quiz";
 import Payment from "./pages/Payment";
 import PrivateRoute from "./utils/PrivateRoute";
@@ -35,6 +36,7 @@ function App() {
           <Route path="/quiz/:id" element={<Quiz />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/contact" element={<Contact />} />
+           <Route path="/aboutus" element={<About />} />
 
           {/* Protected Route */}
           <Route

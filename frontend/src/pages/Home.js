@@ -60,10 +60,10 @@ function Home() {
 
   // Categories
   const categories = [
-    { title: "Web Development", img: "https://images.unsplash.com/photo-1581090700227-44a6d08ef77c?auto=format&fit=crop&w=800&q=80" },
-    { title: "Data Science", img: "https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=800&q=80" },
-    { title: "Design & UX", img: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80" },
-    { title: "Marketing", img: "https://images.unsplash.com/photo-1581091215361-6e35a1f4c0a8?auto=format&fit=crop&w=800&q=80" },
+    { title: "Web Development", img: "https://i.pinimg.com/736x/f8/48/8b/f8488b86d5bce5ddb207519b0b033049.jpg" },
+    { title: "Data Science", img: "https://i.pinimg.com/736x/6f/08/08/6f08086d7582c9f34850bc07cbe06d87.jpg" },
+    { title: "Design & UX", img: "https://i.pinimg.com/736x/aa/aa/65/aaaa651b4747942712192c221fb14074.jpg" },
+    { title: "Marketing", img: "https://i.pinimg.com/736x/c6/e0/c6/c6e0c62998bf53d547fb099f6bc831e2.jpg" },
   ];
 
   return (
@@ -192,7 +192,7 @@ function Home() {
           </p>
           <Link
             to="/about"
-            className="btn btn-danger fw-semibold px-4 py-2 rounded-pill shadow"
+            className="btn btn-warning fw-semibold px-4 py-2 rounded-pill shadow"
           >
             Learn More
           </Link>
@@ -202,7 +202,7 @@ function Home() {
   </div>
 </section>
 
-      {/* 3️⃣ Categories */}
+      {/* 3 Categories */}
       <section className="py-5 container text-center">
         <h2 className="fw-bold text-danger mb-5">Explore Categories</h2>
         <div className="row g-4">
@@ -219,7 +219,7 @@ function Home() {
         </div>
       </section>
 
-      {/* 4️⃣ Why Choose Us */}
+      {/* Why Choose Us */}
       <section className="py-5 text-center container">
         <h2 className="fw-bold text-danger mb-4">Why Choose LMS?</h2>
         <p className="text-muted mb-5">Discover what makes our platform unique — simple, engaging, and effective learning.</p>
@@ -239,7 +239,7 @@ function Home() {
         </div>
       </section>
 
-      {/* 5️⃣ Featured Courses */}
+      {/* Featured Courses */}
       <section className="py-5 bg-white">
         <div className="container">
           <h2 className="text-center fw-bold text-danger mb-5">Popular Courses</h2>
@@ -256,7 +256,7 @@ function Home() {
         </div>
       </section>
 
-      {/* 6️⃣ Stats */}
+      {/* Stats */}
       <section className="py-5 text-light text-center" style={{ background: "linear-gradient(135deg, #b30000 0%, #ff3333 100%)" }}>
         <div className="container">
           <h2 className="fw-bold text-warning mb-4">Our Global Impact</h2>
@@ -275,7 +275,7 @@ function Home() {
         </div>
       </section>
 
-      {/* 7️⃣ Testimonials */}
+      {/* Testimonials */}
       <section className="py-5 bg-white text-center">
         <div className="container">
           <h2 className="fw-bold text-danger mb-5">What Our Students Say</h2>
@@ -295,15 +295,45 @@ function Home() {
         </div>
       </section>
 
-      {/* 8️⃣ CTA Section */}
-      <section className="py-5 text-center text-light" style={{ background: "linear-gradient(135deg, #ff3333 0%, #b30000 100%)" }}>
-        <h2 className="fw-bold mb-3 text-warning">Start your learning adventure today!</h2>
-        <p className="mb-4">Join thousands of learners who are upgrading their careers every day.</p>
-        <Link to="/register" className="btn btn-warning text-danger fw-semibold px-5 py-2 rounded-pill shadow">Enroll Now</Link>
-      </section>
+    {/* CTA Section */}
+    <section
+      className="py-5 text-center text-light position-relative"
+      style={{
+        backgroundImage:
+          "url('https://i.pinimg.com/1200x/37/b3/a7/37b3a7f69bbd910b4a830c1831506a4a.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      {/* Overlay */}
+      <div
+        className="position-absolute top-0 start-0 w-100 h-100"
+        style={{
+          backgroundColor: "rgba(0, 0, 0, 0.65)",
+          zIndex: 1,
+        }}
+      ></div>
 
-    </div>
-  );
+      {/* Content */}
+      <div className="position-relative" style={{ zIndex: 2 }}>
+        <h2 className="fw-bold mb-3 text-warning">
+          Start your learning adventure today!
+        </h2>
+        <p className="mb-4">
+          Join thousands of learners who are upgrading their careers every day.
+        </p>
+        <Link
+          to="/register"
+          className="btn btn-warning text-danger fw-semibold px-5 py-2 rounded-pill shadow"
+        >
+          Enroll Now
+        </Link>
+      </div>
+    </section>
+
+  </div>
+);
 }
 
 export default Home;
