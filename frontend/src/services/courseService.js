@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL + "/courses";
+const API_URL = import.meta.env.VITE_API_URL+ "/courses";
 
 // Get all courses
 export const getCourses = async () => {

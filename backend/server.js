@@ -8,14 +8,12 @@ import authRoutes from "./routes/authRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 
 dotenv.config();
-
-// Initialize app
 const app = express();
 
 // Middleware
 app.use(
   cors({
-    origin: "https://learningmanagementsystem-red.vercel.app/", 
+    origin: "https://learningmanagementsystem-red.vercel.app", 
     credentials: true,
   })
 );
@@ -28,9 +26,9 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log("✅ MongoDB Connected");
+    console.log("MongoDB Connected");
   } catch (error) {
-    console.error("❌ MongoDB Connection Failed:", error.message);
+    console.error("MongoDB Connection Failed:", error.message);
     process.exit(1);
   }
 };
@@ -40,19 +38,17 @@ app.use("/api/courses", courseRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 
-// Health / Default Route
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
-    message: "🎯 LMS Backend API is running",
+    message: "LMS Backend API is running",
   });
 });
 
-// Start Server AFTER DB Connect
 const PORT = process.env.PORT || 5000;
 
 connectDB().then(() => {
   app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
+    console.log(` Server running on port ${PORT}`);
   });
 });

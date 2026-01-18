@@ -6,7 +6,7 @@ function CourseCard({ course }) {
   const navigate = useNavigate();
 
   const handleViewCourse = () => {
-    navigate(`/courses/${course._id}`); // 👈 sirf detail page
+    navigate(`/courses/${course._id}`);
   };
 
   return (
@@ -46,7 +46,7 @@ function CourseCard({ course }) {
             transition: "0.3s ease",
           }}
         >
-          View Course 🚀
+          View Course 
         </button>
       </div>
     </motion.div>
