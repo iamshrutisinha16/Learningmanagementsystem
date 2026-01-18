@@ -21,14 +21,12 @@ function Login() {
       const data = await login(email, password);
 
       if (data?.token) {
-        // ✅ Show Bootstrap success popup
         const modal = new window.bootstrap.Modal(successModalRef.current);
         modal.show();
 
-        // Auto-close and redirect to homepage after 1.8 seconds
         setTimeout(() => {
           modal.hide();
-          navigate("/"); // redirect to homepage
+          navigate("/"); 
         }, 1800);
       } else {
         setError("Invalid email or password.");
@@ -38,9 +36,13 @@ function Login() {
     }
   };
 
+  const handleForgotPassword = () => {
+    // Redirect to forgot password page
+    navigate("/forgot-password");
+  };
+
   return (
     <>
-      {/* 🌈 Main Login Section */}
       <div
         className="d-flex align-items-center justify-content-center min-vh-100"
         style={{
@@ -98,9 +100,7 @@ function Login() {
             </div>
 
             <div className="mb-3">
-              <label className="form-label fw-semibold text-danger">
-                Password
-              </label>
+              <label className="form-label fw-semibold text-danger">Password</label>
               <input
                 type="password"
                 className="form-control border-danger shadow-sm"
@@ -123,15 +123,14 @@ function Login() {
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "scale(1.05)";
-                e.currentTarget.style.boxShadow =
-                  "0 6px 15px rgba(0,0,0,0.3)";
+                e.currentTarget.style.boxShadow = "0 6px 15px rgba(0,0,0,0.3)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "scale(1)";
                 e.currentTarget.style.boxShadow = "none";
               }}
             >
-              🔓 Login
+               Login
             </button>
           </form>
 
@@ -146,9 +145,13 @@ function Login() {
                 Register
               </a>
             </p>
-            <a href="#" className="small text-secondary">
+            <button
+              type="button"
+              className="small text-secondary btn btn-link p-0"
+              onClick={handleForgotPassword}
+            >
               Forgot Password?
-            </a>
+            </button>
           </div>
         </div>
 
@@ -163,7 +166,6 @@ function Login() {
         </style>
       </div>
 
-      {/* ✅ Bootstrap Modal for Success Popup */}
       <div
         className="modal fade"
         id="successModal"
@@ -183,7 +185,6 @@ function Login() {
                   color: "#b30000",
                 }}
               >
-                ✅
               </div>
               <h4 className="fw-bold text-danger">Login Successful!</h4>
               <p className="text-muted mb-0">Redirecting to Homepage...</p>

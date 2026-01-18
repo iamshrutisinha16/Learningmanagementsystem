@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, useLocation } from "react-router-dom"; 
+import { Routes, Route } from "react-router-dom"; 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -19,8 +19,6 @@ import { AuthProvider } from "./context/AuthContext";
 import { CourseProvider } from "./context/CourseContext";
 
 function App() {
-  const location = useLocation();
-
   return (
     <AuthProvider>
       <CourseProvider>
@@ -36,7 +34,7 @@ function App() {
           <Route path="/quiz/:id" element={<Quiz />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/contact" element={<Contact />} />
-           <Route path="/aboutus" element={<About />} />
+          <Route path="/aboutus" element={<About />} />
 
           {/* Protected Route */}
           <Route
@@ -56,4 +54,3 @@ function App() {
 }
 
 export default App;
-
