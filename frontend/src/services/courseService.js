@@ -1,9 +1,16 @@
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL+ "/courses";
+// Safely read environment variable
+const BASE_URL = import.meta.env.VITE_API_URL;
 
-// Get all courses
+if (!BASE_URL) {
+  console.error("VITE_API_URL is missing! Please set it in .env or Vercel Dashboard.");
+}
+
+const API_URL = BASE_URL ? `${BASE_URL}/courses` : "";
+
 export const getCourses = async () => {
+  if (!API_URL) throw new Error("API URL is missing");
   try {
     const { data } = await axios.get(API_URL);
     return data;
@@ -13,8 +20,8 @@ export const getCourses = async () => {
   }
 };
 
-// Get single course by ID
 export const getCourseById = async (id) => {
+  if (!API_URL) throw new Error("API URL is missing");
   try {
     const { data } = await axios.get(`${API_URL}/${id}`);
     return data;
@@ -24,8 +31,8 @@ export const getCourseById = async (id) => {
   }
 };
 
-// Create a new course
 export const createCourse = async (courseData, token) => {
+  if (!API_URL) throw new Error("API URL is missing");
   try {
     const { data } = await axios.post(API_URL, courseData, {
       headers: {
@@ -39,3 +46,4 @@ export const createCourse = async (courseData, token) => {
     throw error.response?.data?.message || "Failed to create course";
   }
 };
+
