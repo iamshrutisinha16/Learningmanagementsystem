@@ -1,12 +1,19 @@
 import axios from "axios";
 const BASE_URL = process.env.REACT_APP_API_URL;
 
-// Axios instance (token auto-attach)
+// Safety check
+if (!BASE_URL) {
+  console.error(
+    " REACT_APP_API_URL is missing! Please set it in your .env file."
+  );
+}
+
+const API_URL = BASE_URL; 
+
 const axiosInstance = axios.create({
   baseURL: API_URL,
 });
 
-//  Automatically attach token to every request
 axiosInstance.interceptors.request.use((config) => {
   const user = localStorage.getItem("user");
   if (user) {
@@ -18,27 +25,39 @@ axiosInstance.interceptors.request.use((config) => {
   return config;
 });
 
-// Register
 export const registerUser = async (name, email, password) => {
-  const { data } = await axiosInstance.post("/auth/register", {
-    name,
-    email,
-    password,
-  });
-  return data;
+  try {
+    const { data } = await axiosInstance.post("/auth/register", {
+      name,
+      email,
+      password,
+    });
+    return data;
+  } catch (error) {
+    console.error("Registration failed:", error);
+    throw error.response?.data?.message || "Registration failed";
+  }
 };
 
-// Login
 export const loginUser = async (email, password) => {
-  const { data } = await axiosInstance.post("/auth/login", {
-    email,
-    password,
-  });
-  return data;
+  try {
+    const { data } = await axiosInstance.post("/auth/login", {
+      email,
+      password,
+    });
+    return data;
+  } catch (error) {
+    console.error("Login failed:", error);
+    throw error.response?.data?.message || "Login failed";
+  }
 };
 
-// Get courses (protected route example)
 export const getCourses = async () => {
-  const { data } = await axiosInstance.get("/courses");
-  return data;
+  try {
+    const { data } = await axiosInstance.get("/courses");
+    return data;
+  } catch (error) {
+    console.error("Fetching courses failed:", error);
+    throw error.response?.data?.message || "Failed to fetch courses";
+  }
 };
