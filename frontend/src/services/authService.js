@@ -1,17 +1,16 @@
 import axios from "axios";
+
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 // Safety check
 if (!BASE_URL) {
   console.error(
-    " REACT_APP_API_URL is missing! Please set it in your .env file."
+    "REACT_APP_API_URL is missing! Please set it in your .env file."
   );
 }
 
-const API_URL = BASE_URL; 
-
 const axiosInstance = axios.create({
-  baseURL: API_URL,
+  baseURL: BASE_URL,
 });
 
 axiosInstance.interceptors.request.use((config) => {
@@ -27,7 +26,7 @@ axiosInstance.interceptors.request.use((config) => {
 
 export const registerUser = async (name, email, password) => {
   try {
-    const { data } = await axiosInstance.post("/auth/register", {
+    const { data } = await axiosInstance.post("/api/auth/register", {
       name,
       email,
       password,
@@ -41,7 +40,7 @@ export const registerUser = async (name, email, password) => {
 
 export const loginUser = async (email, password) => {
   try {
-    const { data } = await axiosInstance.post("/auth/login", {
+    const { data } = await axiosInstance.post("/api/auth/login", {
       email,
       password,
     });
@@ -54,7 +53,7 @@ export const loginUser = async (email, password) => {
 
 export const getCourses = async () => {
   try {
-    const { data } = await axiosInstance.get("/courses");
+    const { data } = await axiosInstance.get("/api/courses");
     return data;
   } catch (error) {
     console.error("Fetching courses failed:", error);
